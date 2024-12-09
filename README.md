@@ -2,6 +2,9 @@
 philosopher の課題を解く
 いわゆる食事する哲学者問題
 
+## 設計等(自分用)
+
+[notion](https://www.notion.so/philosophers-157fd64b77948096b49ddb46567c9269?pvs=4)
 
 ## 関数リスト(external fucntions)
 
