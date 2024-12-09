@@ -1,3 +1,7 @@
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
+
+#include "philo.h"
+
+int main()
+{
+	YYAMASAK("ts\n");
+}
