@@ -11,7 +11,7 @@ OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%$(SUFFIX).o)
 
 # コンパイルオプション
 INCDIR := ../includes
-INCLUDES := -I$(SRCDIR) -I$(INCDIR) 
+INCLUDES := -I$(SRCDIR) -I$(INCDIR) -lpthread
 
 # 実行ファイル名
 NAME = $(PJT)$(SUFFIX)
