@@ -24,3 +24,16 @@ philosopher の課題を解く
 | `pthread_mutex_destory` | mutexに割り当てられたリソースを解放する| [manpages.org](https://nxmnpg.lemoda.net/ja/3/pthread_mutex_destroy#google_vignette) |
 | `pthread_mutex_lock` | mutexをロックする                        | [manpages.org](https://nxmnpg.lemoda.net/ja/3/pthread_mutex_lock#google_vignette)  |
 | `pthread_mutex_unlock` | mutexのロックを解除する           | [manpages.org](https://nxmnpg.lemoda.net/ja/3/pthread_mutex_unlock)            |
+
+## タスク進捗状況 ✅
+
+- [x] 課題の理解 (完了)
+- [ ] スレッドの基本知識・使い方 (作業中: 80%)
+- [ ] ロジックの実装 (未着手: 10%)
+- [ ] デッドロック等の回避 (未着手: 0%)
+- [ ] バリデーション実装 (未着手: 0%)
+- [ ] norm  (未着手: 0%)
+- [ ] レビュー  (未着手: 0%)
+
+*目標：2024-12-21に完了(平日2h以上時間を取る)
+

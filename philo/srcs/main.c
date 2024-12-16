@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:18:39 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/16 15:31:45 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:39:33 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	*start(void *arg)
 }
 
 
-// TODO create logic
+// TODO create logic(lock)
 int main(int argc, char **argv)
 {
 	t_params	params;
