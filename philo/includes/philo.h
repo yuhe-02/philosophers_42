@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:34:26 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/16 15:00:51 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:55:46 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,14 @@ typedef struct	s_philo
 	long long			last_meal;
 	int					remain_times;
 	t_bool				dead_flag;
-	struct s_rules		*rules;
+	int					first_sleep_time;
+	struct s_params		*params;
 }				t_philo ;
 
 typedef struct	s_owner
 {
-	int philos;
-	int ttd;
-	int tte;
-	int tts;
-	int not;
+	struct s_params		*params;
+	pthread_t			t_id;
 }				t_owner ;
 
 /*
@@ -84,7 +82,11 @@ typedef struct	s_params
 	int					tte;
 	int					tts;
 	int					not;
+	long long			start_time;
+	t_bool				dead_flag;
 	t_owner				owner;
+	pthread_mutex_t		dead_key;
+	pthread_mutex_t		print_key;
 	pthread_mutex_t		forks[200];
 	t_philo				philo[200];
 }				t_params;

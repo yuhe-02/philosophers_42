@@ -1,6 +1,6 @@
 CC := cc
 # CFLAGS := -Wall -Werror -Wextra
-CFLAGS := 
+CFLAGS := -g -fsanitize=address
 
 # SRCS
 SRCDIR := srcs

@@ -6,11 +6,51 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:18:39 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/16 15:39:33 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:23:36 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+
+long long	timestamp(void)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+}
+
+void	print_action(t_params *params, int id, char *str)
+{
+	long long time_diff;
+
+	pthread_mutex_lock(&(params->print_key));
+	time_diff = timestamp() - params->start_time;
+	if (!(params->dead_flag))
+		printf("%lld %i %s\n", time_diff, id + 1, str);
+	pthread_mutex_unlock(&(params->print_key));
+	return ;
+}
+
+void	ft_eat(t_philo *philo)
+{
+	t_params *params;
+
+	params = philo->params;
+	pthread_mutex_lock(&(params->forks[philo->l_fork]));
+	print_action(params, philo->id, "has taken a fork");
+	pthread_mutex_lock(&(params->forks[philo->r_fork]));
+	print_action(params, philo->id, "has taken a fork");
+	// pthread_mutex_lock(&(params->meal_check));
+	// action_print(params, philo->id, "is eating");
+	// philo->t_last_meal = timestamp();
+	// pthread_mutex_unlock(&(params->meal_check));
+	// smart_sleep(params->time_eat, params);
+	// (philo->x_ate)++;
+	pthread_mutex_unlock(&(params->forks[philo->l_fork]));
+	pthread_mutex_unlock(&(params->forks[philo->r_fork]));
+}
 
 //  TODO add validation
 //  TODO check validation test
@@ -28,11 +68,13 @@ int validate_params(t_params *params, int ac, char ** argv)
 	// params->not = ft_atoi(argv[5], &is_not_num);
 	// if (is_not_num)
 	// 	return (1);
-	params->nop = 5;
+	params->nop = 10;
 	params->ttd = 800;
 	params->tte = 200;
 	params->tts = 200;
 	params->not = 7;
+	params->dead_flag = False;
+	params->owner.params = params;
 	return (0);
 }
 
@@ -49,6 +91,21 @@ int	init_philos(t_params *params)
 		params->philo[i].dead_flag = False;
 		params->philo[i].l_fork = i;
 		params->philo[i].r_fork = i - 1;
+		params->philo[i].params = params;
+		if (params->nop % 2 == 0)
+		{
+			if ((i + 1) % 2 == 0)
+				params->philo[i].first_sleep_time = params->tte;
+			else
+				params->philo[i].first_sleep_time = 0;
+		}
+		else 
+		{
+			if ((i + 1) % 2 == 0)
+				params->philo[i].first_sleep_time = ((2 * params->nop - 1) * params->tte) / (params->nop - 1);
+			else
+				params->philo[i].first_sleep_time = ((params->nop - 1) * params->tte) / (params->nop - 1);;
+		}
 		if (i == 0)
 		{
 			params->philo[i].l_fork = i;
@@ -69,16 +126,51 @@ int	init_forks(t_params *params)
 		pthread_mutex_init(&(params->forks[i]), NULL);
 		i++;
 	}
+	pthread_mutex_init(&(params->print_key), NULL);
+	pthread_mutex_init(&(params->dead_key), NULL);
 	return (0);
 }
 
 void	*start(void *arg)
 {
-	t_philo *philo;
+	t_philo		*philo;
+	t_params	*params;
 
 	philo = (t_philo *)arg;
-	YYAMASAK("number: %d, time: %ld\n", philo->id, philo->t_id);
+	params = philo->params;
+	usleep(philo->first_sleep_time);
+	while (!(params->dead_flag))
+	{
+		// philo_eats(philo);
+		// if (rules->all_ate)
+		// 	break ;
+		print_action(params, philo->id, "do something");
+		if (params->ttd <= timestamp() - params->start_time)
+		{
+			pthread_mutex_lock(&(params->dead_key));
+        	print_action(params, philo->id, "died.");
+        	params->dead_flag = True;
+			pthread_mutex_unlock(&(params->dead_key));
+			break ;
+		}
+		usleep(50);
+			
+		// smart_sleep(rules->time_sleep, rules);
+		// action_print(rules, philo->id, "is thinking");
+		// i++;
+	}
 	return (NULL);
+}
+
+void	*start_owner(void *arg)
+{
+	t_philo		*philo;
+	t_owner		*owner;
+	t_params	*params;
+
+	owner = (t_owner *)arg;
+	params = owner->params;
+	
 }
 
 
@@ -93,12 +185,22 @@ int main(int argc, char **argv)
 	validate_params(&params, argc, argv);
 	init_philos(&params);
 	init_forks(&params);
-	while (i <= params.nop)
+	params.start_time = timestamp();
+	while (i < params.nop)
 	{
 		philo = &(params.philo[i]);
 		pthread_create(&(philo->t_id), NULL, start, philo);
 		i++;
 	}
-	show_philos(&params);
+	i = 0;
+	while (i < params.nop)
+	{
+		philo = &(params.philo[i]);
+		pthread_join(philo->t_id, NULL);
+		i++;
+	}
+	// pthread_create(&(params.owner.t_id), NULL, start_owner, &(params.owner));
+	// show_philos(&params);
 	// show_params(&params);
+	return (0);
 }
