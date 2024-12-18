@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:18:39 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/18 12:16:52 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:25:08 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,15 @@ void	*start(void *arg)
 	philo = (t_philo *)arg;
 	params = philo->params;
 	usleep(philo->first_sleep_time);
-	while (!(params->dead_flag))
+	while (!(philo->dead_flag))
 	{
 		ft_eat(philo);
+		if (params->ttd <= timestamp() - (params->start_time + philo->last_meal))
+		{
+			print_action(params, philo[i].id, "died");
+			params->dead_flag = True;
+			break ;
+		}
 		// if (rules->all_ate)
 		// 	break ;
 		print_action(params, philo->id, "is sleeping");

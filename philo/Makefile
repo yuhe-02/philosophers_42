@@ -5,6 +5,7 @@ CFLAGS := -g -fsanitize=thread
 # SRCS
 SRCDIR := srcs
 SRCS += $(SRCDIR)/main.c
+SRCS += $(SRCDIR)/init.c
 
 UTILS := utils
 SRCS += $(SRCDIR)/${UTILS}/ft_atoi.c

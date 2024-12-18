@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:34:26 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/18 12:06:03 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:37:22 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,12 @@ typedef struct	s_params
 }				t_params;
 
 
+
+// init
+int validate_params(t_params *params, int ac, char ** argv);
+int	init_owner(t_params *params);
+int	init_philos(t_params *params);
+int	init_forks(t_params *params);
 
 // utils
 int			ft_atoi(const char *str, int* is_not_num);
