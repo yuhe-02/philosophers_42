@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:34:26 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/17 14:55:46 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:06:03 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct	s_params
 	t_bool				dead_flag;
 	t_owner				owner;
 	pthread_mutex_t		dead_key;
+	pthread_mutex_t		meal_key;
 	pthread_mutex_t		print_key;
 	pthread_mutex_t		forks[200];
 	t_philo				philo[200];
