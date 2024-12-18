@@ -1,6 +1,7 @@
 CC := cc
 # CFLAGS := -Wall -Werror -Wextra
-CFLAGS := -g -fsanitize=thread
+# CFLAGS := -g -fsanitize=thread
+CFLAGS := 
 
 # SRCS
 SRCDIR := srcs

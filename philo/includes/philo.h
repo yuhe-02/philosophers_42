@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:34:26 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/18 12:37:22 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/18 14:44:39 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 typedef enum s_bool 
 {
 	False = 0,
-	True = 20
+	True = 1
 }	t_bool ;
 
 /*
@@ -53,7 +53,7 @@ typedef struct	s_philo
 	int					r_fork;
 	int					l_fork;
 	long long			last_meal;
-	int					remain_times;
+	int					meal_times;
 	t_bool				dead_flag;
 	int					first_sleep_time;
 	struct s_params		*params;
@@ -82,6 +82,7 @@ typedef struct	s_params
 	int					tte;
 	int					tts;
 	int					not;
+	int					finish_meal;
 	long long			start_time;
 	t_bool				dead_flag;
 	t_owner				owner;
@@ -101,7 +102,7 @@ int	init_philos(t_params *params);
 int	init_forks(t_params *params);
 
 // utils
-int			ft_atoi(const char *str, int* is_not_num);
+int			ft_atoi_with_flg(const char *str, int* is_not_num);
 char		*ft_itoa(int n);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
