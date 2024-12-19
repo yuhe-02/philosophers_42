@@ -31,10 +31,10 @@ philosopher の課題を解く
 - [x] スレッドの基本知識・使い方 (完了)
 - [x] ロジックの実装 (完了)
 -	- 	各スレッドを動かす	✅
--	-	食事までの流れの実装
--	-	usleepを正しく使うように各スレッドのsleep
--	-	ownerにdeath checkさせるようにする
--	-	exit処理
+-	-	食事までの流れの実装 	✅
+-	-	usleepを正しく使うように各スレッドのsleep	✅
+-	-	ownerにdeath checkさせるようにする	✅
+-	-	exit処理	✅
 - [x] デッドロック等の回避 (完了)
 - [in progress] バリデーション実装 (着手中: 60%)
 - [in progress] norm  (着手中: 60%)
