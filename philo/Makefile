@@ -1,7 +1,7 @@
 CC := cc
 # CFLAGS := -Wall -Werror -Wextra
-# CFLAGS := -g -fsanitize=thread
-CFLAGS := -g -fsanitize=address
+CFLAGS := -g -fsanitize=thread
+# CFLAGS := -g -fsanitize=address
 # CFLAGS := 
 
 # SRCS
@@ -15,7 +15,7 @@ SRCS += $(SRCDIR)/owner_thread.c
 
 UTILS := utils
 SRCS += $(SRCDIR)/${UTILS}/ft_atoi.c
-SRCS += $(SRCDIR)/${UTILS}/ft_shows.c
+# SRCS += $(SRCDIR)/${UTILS}/ft_shows.c
 SRCS += $(SRCDIR)/${UTILS}/ft_itoa.c
 SRCS += $(SRCDIR)/${UTILS}/ft_strlen.c
 SRCS += $(SRCDIR)/${UTILS}/ft_strncmp.c

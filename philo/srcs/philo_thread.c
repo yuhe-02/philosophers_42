@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:08:22 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 18:20:59 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:15:51 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	_ft_eat(t_philo *philo)
 	_ft_sleep(params->tte, params);
 	pthread_mutex_unlock(&(params->forks[philo->l_fork]));
 	pthread_mutex_unlock(&(params->forks[philo->r_fork]));
+	return (0);
 }
 
 void	*start_philo(void *arg)

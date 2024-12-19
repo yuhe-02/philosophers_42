@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:53:54 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 18:58:01 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:36:12 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_print_act(t_params *params, int id, char *str, int mode)
 {
 	long long	time_diff;
 	int			dead_flag;
-	int			err_flg;
 
 	pthread_mutex_lock(&(params->print_key));
 	time_diff = ft_timeofday() - params->start_time;
@@ -30,8 +29,6 @@ int	ft_print_act(t_params *params, int id, char *str, int mode)
 int	ft_print_act2(t_params *params, int id, char *str)
 {
 	long long	time_diff;
-	int			dead_flag;
-	int			err_flg;
 
 	pthread_mutex_lock(&(params->print_key));
 	time_diff = ft_timeofday() - params->start_time;

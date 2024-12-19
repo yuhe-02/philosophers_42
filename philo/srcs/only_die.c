@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:43:14 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 16:22:13 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:13:56 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	*wait_for_die(void *arg)
 		}
 		usleep(50);
 	}
+	return (NULL);
 }
 
 int	prepare_for_die(t_params *params)
