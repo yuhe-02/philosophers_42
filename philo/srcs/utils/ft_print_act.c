@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_print_act.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 17:27:11 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 16:06:17 by yyamasak         ###   ########.fr       */
+/*   Created: 2024/12/19 14:53:54 by yyamasak          #+#    #+#             */
+/*   Updated: 2024/12/19 16:06:52 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_print_act(t_params *params, int id, char *str, int mode)
 {
-	size_t	i;
+	long long	time_diff;
+	int			dead_flag;
+	int			err_flg;
 
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] && s2[i] && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	dead_flag = ft_dead_check(params, mode);
+	pthread_mutex_lock(&(params->print_key));
+	time_diff = ft_timeofday() - params->start_time;
+	if (!dead_flag)
+		printf("%lld %i %s\n", time_diff, id + 1, str);
+	pthread_mutex_unlock(&(params->print_key));
+	return (dead_flag);
 }

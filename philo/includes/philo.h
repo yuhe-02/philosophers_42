@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:34:26 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/18 14:44:39 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:30:36 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct	s_philo
 	int					l_fork;
 	long long			last_meal;
 	int					meal_times;
-	t_bool				dead_flag;
+	int					dead_flag;
 	int					first_sleep_time;
 	struct s_params		*params;
 }				t_philo ;
@@ -84,11 +84,11 @@ typedef struct	s_params
 	int					not;
 	int					finish_meal;
 	long long			start_time;
-	t_bool				dead_flag;
+	int					dead_flag;
 	t_owner				owner;
 	pthread_mutex_t		dead_key;
-	pthread_mutex_t		meal_key;
 	pthread_mutex_t		print_key;
+	pthread_mutex_t		meal_keys[200];
 	pthread_mutex_t		forks[200];
 	t_philo				philo[200];
 }				t_params;
@@ -96,16 +96,23 @@ typedef struct	s_params
 
 
 // init
-int validate_params(t_params *params, int ac, char ** argv);
-int	init_owner(t_params *params);
-int	init_philos(t_params *params);
-int	init_forks(t_params *params);
+int		validate_params(t_params *params, int ac, char ** argv);
+int		init_owner(t_params *params);
+int		init_philos(t_params *params);
+int		init_forks(t_params *params);
+int		prepare_for_die(t_params *params);
+int		launch_thread(t_params *params);
+void	*start_owner(void *arg);
+void	*start_philo(void *arg);
 
 // utils
 int			ft_atoi_with_flg(const char *str, int* is_not_num);
 char		*ft_itoa(int n);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+long long	ft_timeofday(void);
+int			ft_dead_check(t_params *params, int mode);
+int			ft_print_act(t_params *params, int id, char *str, int mode);
 
 // show
 void	show_params(t_params *params);

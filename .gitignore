@@ -3,3 +3,6 @@ philosophers.pptx
 philo/objs
 philo/philo
 philo/philo_yyamasak
+.venv
+philo/srcs/old
+philo/srcs/old/*

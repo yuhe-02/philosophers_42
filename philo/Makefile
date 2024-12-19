@@ -1,12 +1,17 @@
 CC := cc
 # CFLAGS := -Wall -Werror -Wextra
 # CFLAGS := -g -fsanitize=thread
-CFLAGS := 
+CFLAGS := -g -fsanitize=address
+# CFLAGS := 
 
 # SRCS
 SRCDIR := srcs
 SRCS += $(SRCDIR)/main.c
 SRCS += $(SRCDIR)/init.c
+SRCS += $(SRCDIR)/only_die.c
+SRCS += $(SRCDIR)/launch.c
+SRCS += $(SRCDIR)/philo_thread.c
+SRCS += $(SRCDIR)/owner_thread.c
 
 UTILS := utils
 SRCS += $(SRCDIR)/${UTILS}/ft_atoi.c
@@ -14,6 +19,9 @@ SRCS += $(SRCDIR)/${UTILS}/ft_shows.c
 SRCS += $(SRCDIR)/${UTILS}/ft_itoa.c
 SRCS += $(SRCDIR)/${UTILS}/ft_strlen.c
 SRCS += $(SRCDIR)/${UTILS}/ft_strncmp.c
+SRCS += $(SRCDIR)/${UTILS}/ft_timeofday.c
+SRCS += $(SRCDIR)/${UTILS}/ft_dead_check.c
+SRCS += $(SRCDIR)/${UTILS}/ft_print_act.c
 
 #OBJS
 OBJDIR := objs

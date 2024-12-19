@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:52:33 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/18 14:45:11 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:07:36 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_limit_value(long *digits, int value, int *minus)
 	return (flg);
 }
 
-int	ft_atoi_with_flg(const char *str, int* is_not_num)
+int	ft_atoi_with_flg(const char *str, int *is_not_num)
 {
 	long	digits;
 	int		i;

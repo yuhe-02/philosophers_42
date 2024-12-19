@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_dead_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 17:27:11 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 16:06:17 by yyamasak         ###   ########.fr       */
+/*   Created: 2024/12/19 14:56:07 by yyamasak          #+#    #+#             */
+/*   Updated: 2024/12/19 16:07:19 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_dead_check(t_params *params, int mode)
 {
-	size_t	i;
+	int	dead_flag;
 
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] && s2[i] && i < n)
+	if (mode == 0)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		pthread_mutex_lock(&(params->dead_key));
+		dead_flag = params->dead_flag;
+		pthread_mutex_unlock(&(params->dead_key));
+		return (dead_flag);
 	}
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (params->dead_flag);
 }
