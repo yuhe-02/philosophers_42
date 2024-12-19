@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:36:18 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 16:10:02 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:30:24 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	init_philos(t_params *params)
 		params->philo[i].params = params;
 		params->philo[i].first_sleep_time = 0;
 		if (i % 2 == 1)
-			params->philo[i].first_sleep_time = 15000;
+			params->philo[i].first_sleep_time = params->tte * 1000 / 2;
 		if (i == 0)
 		{
 			params->philo[i].l_fork = i;

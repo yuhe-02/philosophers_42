@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:21:16 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 16:24:16 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:59:26 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 static	int	_ft_death_check(t_params *params, t_philo *philo, int i)
 {
+	long long	last_meal;
+
+	
 	pthread_mutex_lock(&(params->meal_keys[i]));
-	if (params->ttd <= ft_timeofday() - philo->last_meal)
+	last_meal = philo->last_meal;
+	pthread_mutex_unlock(&(params->meal_keys[i]));
+	if (params->ttd <= ft_timeofday() - last_meal)
 	{
 		pthread_mutex_lock(&(params->dead_key));
-		ft_print_act(params, philo->id, "died", 1);
 		params->dead_flag = 1;
 		pthread_mutex_unlock(&(params->dead_key));
-		pthread_mutex_unlock(&(params->meal_keys[i]));
+		ft_print_act2(params, philo->id, "died");
 		return (1);
 	}
-	pthread_mutex_unlock(&(params->meal_keys[i]));
 	return (0);
 }
 

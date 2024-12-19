@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:34:26 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 16:30:36 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:58:20 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 long long	ft_timeofday(void);
 int			ft_dead_check(t_params *params, int mode);
 int			ft_print_act(t_params *params, int id, char *str, int mode);
+int			ft_print_act2(t_params *params, int id, char *str);
 
 // show
 void	show_params(t_params *params);
