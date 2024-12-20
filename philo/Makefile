@@ -1,8 +1,5 @@
 CC := cc
-# CFLAGS := -Wall -Werror -Wextra
-CFLAGS := -g -fsanitize=thread
-# CFLAGS := -g -fsanitize=address
-# CFLAGS := 
+CFLAGS := -Wall -Werror -Wextra
 
 # SRCS
 SRCDIR := srcs
@@ -15,10 +12,6 @@ SRCS += $(SRCDIR)/owner_thread.c
 
 UTILS := utils
 SRCS += $(SRCDIR)/${UTILS}/ft_atoi.c
-# SRCS += $(SRCDIR)/${UTILS}/ft_shows.c
-SRCS += $(SRCDIR)/${UTILS}/ft_itoa.c
-SRCS += $(SRCDIR)/${UTILS}/ft_strlen.c
-SRCS += $(SRCDIR)/${UTILS}/ft_strncmp.c
 SRCS += $(SRCDIR)/${UTILS}/ft_timeofday.c
 SRCS += $(SRCDIR)/${UTILS}/ft_dead_check.c
 SRCS += $(SRCDIR)/${UTILS}/ft_print_act.c
@@ -27,36 +20,21 @@ SRCS += $(SRCDIR)/${UTILS}/ft_print_act.c
 OBJDIR := objs
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%$(SUFFIX).o)
 
-# コンパイルオプション
 INCDIR := includes
-INCLUDES := -I$(SRCDIR) -I$(INCDIR) -lpthread
+INCLUDES := -I$(INCDIR) 
 
-# 実行ファイル名
 NAME = $(PJT)$(SUFFIX)
 
-# プロジェクト名
 PJT := philo
 
-# SUFFIX一覧
+
 SUFFIXES := _yyamasak
 
-# デバッグの場合分け
-ifdef YYAMASAK_DEBUG
-	DEFINES := -D YYAMASAK_DEBUG
-	SUFFIX := $(word 1, $(SUFFIXES))
-else
-	DEFINES :=
-	SUFFIX :=
-endif
-
-# ターゲット
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIB)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIB) -lpthread
 
-yyamasak:
-	make YYAMASAK_DEBUG=1
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
@@ -70,8 +48,7 @@ clean:
 
 fclean: clean
 	rm -f $(PJT)
-	rm -f $(foreach SUFFIX,$(SUFFIXES),$(NAME))
 
 re: fclean all
 
-.PHONY: all yyamasak clean fclean re
+.PHONY: all clean fclean re

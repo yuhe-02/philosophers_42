@@ -6,17 +6,16 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:21:16 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 19:35:58 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/20 20:37:11 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static	int	_ft_death_check(t_params *params, t_philo *philo, int i)
+static int	_ft_death_check(t_params *params, t_philo *philo, int i)
 {
 	long long	elapsed_time_after_meal;
 
-	
 	pthread_mutex_lock(&(params->meal_keys[i]));
 	elapsed_time_after_meal = ft_timeofday() - philo->last_meal;
 	pthread_mutex_unlock(&(params->meal_keys[i]));
