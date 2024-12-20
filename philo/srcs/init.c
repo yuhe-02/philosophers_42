@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:36:18 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 18:30:24 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:28:38 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	init_philos(t_params *params)
 	while (i < params->nop)
 	{
 		params->philo[i].id = i;
-		params->philo[i].last_meal = 0;
+		params->philo[i].last_meal = ft_timeofday();
 		params->philo[i].meal_times = 0;
 		params->philo[i].dead_flag = 0;
 		params->philo[i].l_fork = i;

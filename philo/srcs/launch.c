@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:26:48 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/20 20:37:42 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:43:22 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	launch_thread(t_params *params)
 			flag = detach_thread(params, i);
 			break ;
 		}
-		philo->last_meal = ft_timeofday();
 		i++;
 	}
 	if (flag == 0

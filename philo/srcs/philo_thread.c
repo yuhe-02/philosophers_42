@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:08:22 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/19 19:15:51 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:42:28 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,18 @@ static int	_ft_eat(t_philo *philo)
 	t_params	*params;
 
 	params = philo->params;
-	pthread_mutex_lock(&(params->forks[philo->l_fork]));
-	if (ft_print_act(params, philo->id, "has taken a fork", 0) == 1)
+	if (philo->l_fork < philo->r_fork)
 	{
-		pthread_mutex_unlock(&(params->forks[philo->l_fork]));
-		return (1);
+		pthread_mutex_lock(&(params->forks[philo->l_fork]));
+		pthread_mutex_lock(&(params->forks[philo->r_fork]));
 	}
-	pthread_mutex_lock(&(params->forks[philo->r_fork]));
-	if (ft_print_act(params, philo->id, "has taken a fork", 0) == 1)
+	else
 	{
-		pthread_mutex_unlock(&(params->forks[philo->l_fork]));
-		pthread_mutex_unlock(&(params->forks[philo->r_fork]));
-		return (1);
+		pthread_mutex_lock(&(params->forks[philo->r_fork]));
+		pthread_mutex_lock(&(params->forks[philo->l_fork]));
 	}
+	ft_print_act(params, philo->id, "has taken a fork", 0);
+	ft_print_act(params, philo->id, "has taken a fork", 0);
 	pthread_mutex_lock(&(params->meal_keys[philo->id]));
 	ft_print_act(params, philo->id, "is eating", 0);
 	philo->last_meal = ft_timeofday();

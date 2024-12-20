@@ -6,7 +6,7 @@
 /*   By: yyamasak <yyamasak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:34:26 by yyamasak          #+#    #+#             */
-/*   Updated: 2024/12/20 20:38:25 by yyamasak         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:31:20 by yyamasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_owner
 {
 	struct s_params	*params;
 	pthread_t		t_id;
+	int				meal_times[200];
 }					t_owner;
 
 typedef struct s_params
